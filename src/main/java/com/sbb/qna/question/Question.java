@@ -1,8 +1,9 @@
-package com.sbb.qna;
+package com.sbb.qna.question;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.sbb.qna.answer.Answer;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

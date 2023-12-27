@@ -1,5 +1,6 @@
-package com.sbb.qna;
+package com.sbb.qna.answer;
 
+import com.sbb.qna.question.Question;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
