@@ -1,9 +1,11 @@
 package com.sbb.qna.question;
 
+import com.sbb.qna.answer.Answer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +25,14 @@ public class QuestionService {
             return null;
         }
         return oq.get();
+    }
+
+    public void create(String subject, String content) {
+        Question question = new Question();
+        question.setSubject(subject);
+        question.setContent(content);
+        question.setCreateDate(LocalDateTime.now());
+        this.questionRepository.save(question);
     }
 
 }
