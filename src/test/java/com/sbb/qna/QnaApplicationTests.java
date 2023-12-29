@@ -40,36 +40,43 @@ class QnaApplicationTests {
 
     @Test
     void test02() {
-        Optional<Question> oq = this.questionRepository.findById(1);
-        if (oq.isPresent()) {
-            Question q = oq.get();
-            assertEquals("testSub", q.getSubject());
-        }
+        List<Question> all = this.questionRepository.findAll();
+        assertEquals(2, all.size());
+
+        Question q = all.get(0);
+        assertEquals("sbb가 무엇인가요?", q.getSubject());
     }
 
     @Test
     void test03() {
-        Question q = this.questionRepository.findBySubject("testSub");
+        Optional<Question> oq = this.questionRepository.findById(1);
+        if (oq.isPresent()) {
+            Question q = oq.get();
+            assertEquals("sbb가 무엇인가요?", q.getSubject());
+        }
+    }
+    @Test
+    void test04() {
+        Question q = this.questionRepository.findBySubject("sbb가 무엇인가요?");
         assertEquals(1, q.getId());
     }
 
-
     @Test
-    void test04() {
+    void test05() {
         Question q = this.questionRepository.findBySubjectAndContent(
                 "sbb가 무엇인가요?", "sbb에 대해서 알고 싶습니다.");
         assertEquals(1, q.getId());
     }
 
     @Test
-    void test05() {
+    void test06() {
         List<Question> qList = this.questionRepository.findBySubjectLike("sbb%");
         Question q = qList.get(0);
         assertEquals("sbb가 무엇인가요?", q.getSubject());
     }
 
     @Test
-    void test06() {
+    void test07() {
         Optional<Question> oq = this.questionRepository.findById(1);
         assertTrue(oq.isPresent());
         Question q = oq.get();
@@ -78,7 +85,7 @@ class QnaApplicationTests {
     }
 
     @Test
-    void test07() {
+    void test08() {
         assertEquals(2, this.questionRepository.count());
         Optional<Question> oq = this.questionRepository.findById(1);
         assertTrue(oq.isPresent());
@@ -88,28 +95,36 @@ class QnaApplicationTests {
     }
 
     @Test
-    void test08() {
-        Optional<Question> oq = this.questionRepository.findById(1);
-
+    void test09() {
+        Optional<Question> oq = this.questionRepository.findById(2);
         assertTrue(oq.isPresent());
         Question q = oq.get();
 
-        Answer a1 = new Answer();
-        a1.setContent("답변입니다.");
-        a1.setCreatedDate(LocalDateTime.now());
-        this.answerRepository.save(a1);
+        Answer a = new Answer();
+        a.setContent("네 자동으로 생성됩니다.");
+        a.setQuestion(q);  // 어떤 질문의 답변인지 알기위해서 Question 객체가 필요하다.
+        a.setCreateDate(LocalDateTime.now());
+        this.answerRepository.save(a);
+    }
+    @Test
+    void test10() {
+        Optional<Answer> oa = this.answerRepository.findById(1);
+        assertTrue(oa.isPresent());
+        Answer a = oa.get();
+        assertEquals(2, a.getQuestion().getId());
     }
 
     @Test
-    void test09() {
-        Optional<Question> oq = this.questionRepository.findById(1);
-        if (oq.isPresent()) {
-            Question q = oq.get();
-            assertEquals(1, q.getSubject());
-            assertEquals(2, q.getSubject());
-        }
+    void test11() {
+        Optional<Question> oq = this.questionRepository.findById(2);
+        assertTrue(oq.isPresent());
+        Question q = oq.get();
 
+        List<Answer> answerList = q.getAnswerList();
 
+        assertEquals(1, answerList.size());
+        assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
     }
+
 }
 
