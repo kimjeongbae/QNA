@@ -4,6 +4,7 @@ import com.sbb.qna.answer.Answer;
 import com.sbb.qna.answer.AnswerRepository;
 import com.sbb.qna.question.Question;
 import com.sbb.qna.question.QuestionRepository;
+import com.sbb.qna.question.QuestionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,8 @@ class QnaApplicationTests {
     private QuestionRepository questionRepository;
     @Autowired
     private AnswerRepository answerRepository;
+    @Autowired
+    private QuestionService questionService;
 
     @Test
     void test01() {
@@ -124,6 +127,15 @@ class QnaApplicationTests {
 
         assertEquals(1, answerList.size());
         assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
+    }
+
+    @Test
+    void test12 () {
+        for (int i = 1; i <= 300; i++) {
+            String subject = String.format("테스트 데이터입니다:[%03d]", i);
+            String content = "내용무";
+            this.questionService.create(subject, content);
+        }
     }
 
 }
