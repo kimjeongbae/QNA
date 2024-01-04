@@ -1,6 +1,7 @@
 package com.sbb.qna.answer;
 
 import com.sbb.qna.question.Question;
+import com.sbb.qna.siteuser.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,4 +21,7 @@ public class Answer {
 
     @ManyToOne
     private Question question;
+
+    @ManyToOne
+    private SiteUser author;
 }
