@@ -94,5 +94,14 @@ public class QuestionController {
         return "redirect:/question/list";
     }
 
+    @GetMapping("/vote/{id}")
+    public String vote(@PathVariable("id") Integer id, Principal principal){
+        Question question = this.questionService.getQuestion(id);
+        SiteUser siteUser = this.siteUserService.getUser(principal.getName());
+        this.questionService.vote(question,siteUser);
+
+        return String.format("redirect:/question/detail/%s", question.getId());
+    }
+
 }
 

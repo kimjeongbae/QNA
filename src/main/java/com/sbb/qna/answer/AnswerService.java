@@ -27,10 +27,10 @@ public class AnswerService {
 
     public Answer getAnswer(Integer id) {
         Optional<Answer> answer = this.answerRepository.findById(id);
-        if (answer.isEmpty()) {
-            throw new RuntimeException("answer not found");
-        } else {
+        if (answer.isPresent()) {
             return answer.get();
+        } else {
+            throw new RuntimeException("answer을 찾을수 없습니다");
         }
     }
 
@@ -42,5 +42,10 @@ public class AnswerService {
 
     public void delete(Answer answer){
         this.answerRepository.delete(answer);
+    }
+
+    public void vote(Answer answer, SiteUser siteUser) {
+        answer.getVoter().add(siteUser);
+        this.answerRepository.save(answer);
     }
 }

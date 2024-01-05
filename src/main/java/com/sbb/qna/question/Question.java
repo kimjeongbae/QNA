@@ -2,6 +2,7 @@ package com.sbb.qna.question;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import com.sbb.qna.answer.Answer;
 import com.sbb.qna.siteuser.SiteUser;
@@ -33,4 +34,7 @@ public class Question {
 
     @ManyToOne
     private SiteUser author;
+
+    @ManyToMany
+    Set<SiteUser> voter;
 }
