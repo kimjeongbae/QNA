@@ -94,6 +94,7 @@ public class QuestionController {
         return "redirect:/question/list";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/vote/{id}")
     public String vote(@PathVariable("id") Integer id, Principal principal){
         Question question = this.questionService.getQuestion(id);
