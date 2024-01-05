@@ -36,6 +36,10 @@ public class QuestionService {
         return oq.get();
     }
 
+    public void delete(Question question) {
+        this.questionRepository.delete(question);
+    }
+
     public void create(String subject, String content, SiteUser user) {
         Question question = new Question();
         question.setSubject(subject);
