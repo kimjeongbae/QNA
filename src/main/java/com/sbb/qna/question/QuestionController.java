@@ -25,6 +25,7 @@ public class QuestionController {
     private final QuestionService questionService;
     private final SiteUserService siteUserService;
 
+
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
         Page<Question> paging = this.questionService.getList(page);

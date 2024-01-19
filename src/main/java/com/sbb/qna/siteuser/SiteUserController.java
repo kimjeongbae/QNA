@@ -1,19 +1,26 @@
 package com.sbb.qna.siteuser;
 
+import com.sbb.qna.answer.Answer;
+import com.sbb.qna.answer.AnswerForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.security.Principal;
 
 @RequestMapping("/user")
 @RequiredArgsConstructor
 @Controller
 public class SiteUserController {
     private final SiteUserService siteUserService;
+
 
 
     @GetMapping("/login")
