@@ -23,6 +23,21 @@
             <label for="email" class="form-label">이메일</label>
             <input type="email" th:field="*{email}" class="form-control">
         </div>
+
+        <form action="#">
+            <label for="lang">Language</label>
+            <select name="languages" id="lang">
+                <option >JavaScript</option>
+                <option value="php">PHP</option>
+                <option value="java">Java</option>
+                <option value="golang">Golang</option>
+                <option value="python">Python</option>
+                <option value="c#">C#</option>
+                <option value="C++">C++</option>
+                <option value="erlang">Erlang</option>
+            </select>
+            <input type="submit" value="Submit" />
+        </form>
         <button type="submit" class="btn btn-primary">회원가입</button>
     </form>
 </div>

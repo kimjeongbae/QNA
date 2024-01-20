@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @SpringBootTest
-class QnaApplicationTests {
+class   QnaApplicationTests {
     @Autowired
     private QuestionRepository questionRepository;
     @Autowired

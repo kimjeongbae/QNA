@@ -39,6 +39,7 @@ dependencies {
 	implementation 'org.commonmark:commonmark:0.21.0'
 	// 웹 소켓 ( 채팅방 구현)
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
 
 }
